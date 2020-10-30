@@ -1,10 +1,15 @@
 import java.io.File;
+import java.util.Scanner;
 
 public class ChangeFileName {
 
     public static void main(String[] args) throws Exception {
+        System.out.println("FILE NAME CHANGER \n");
+        Scanner sc = new Scanner(System.in);
 
-        File folderSource = new File("");
+        System.out.println("Digite o caminho do diretório de origem: ");
+        String caminhoOrigem = sc.nextLine();
+        File folderSource = new File(caminhoOrigem);
 
         if (!folderSource.exists()) {
             throw new Exception("O diretório de origem não existe.");
@@ -13,7 +18,10 @@ public class ChangeFileName {
         File[] listOfFiles = folderSource.listFiles();
         int qtdFiles = listOfFiles.length;
 
-        File folderTarget = new File("");
+        System.out.println("Digite o caminho do diretório de destino dos arquivos: ");
+        String caminhoDestino = sc.nextLine();
+        File folderTarget = new File(caminhoDestino);
+
         boolean directoryCreated;
         if (!folderTarget.exists()) {
             directoryCreated = folderTarget.mkdir();
@@ -21,9 +29,13 @@ public class ChangeFileName {
                 throw new Exception("Não foi possível criar o diretório");
         }
 
-        String pieceToRemove = "";
+        System.out.println("Digite o texto a ser removido dos arquivos: ");
+        String pieceToRemove = sc.nextLine();
+
         String fileName;
         String newFilename;
+
+        System.out.println("Removendo o texto " + pieceToRemove + " dos arquivos...");
 
         for (int i=0; i<qtdFiles; i++) {
 
