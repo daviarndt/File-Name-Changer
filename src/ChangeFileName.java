@@ -48,7 +48,9 @@ public class ChangeFileName {
                     File completeFile = new File(folderTarget + "\\" + newFilename);
                     try {
                         currentFile.renameTo(completeFile);
+                        System.out.println("Arquivo: " + currentFile.getAbsolutePath() + " renomeado com sucesso!");
                     } catch (Exception e) {
+                        System.out.println("Erro! Arquivo: " + currentFile + " não pode ser renomeado.");
                         e.printStackTrace();
                     }
 
