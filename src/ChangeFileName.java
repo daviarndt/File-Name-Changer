@@ -1,4 +1,7 @@
 import java.io.File;
+import java.io.FileOutputStream;
+import java.nio.channels.FileChannel;
+import java.nio.channels.FileLock;
 import java.util.Scanner;
 
 public class ChangeFileName {
@@ -41,6 +44,14 @@ public class ChangeFileName {
 
             if (listOfFiles[i].isFile()) {
                 File currentFile = listOfFiles[i];
+
+                try (FileOutputStream fileOutputStream = new FileOutputStream(currentFile.getAbsolutePath());
+                     FileChannel channel = fileOutputStream.getChannel();
+                     FileLock lock = channel.lock()) {
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
                 fileName = listOfFiles[i].getName();
 
                 if (fileName.contains(pieceToRemove)) {
